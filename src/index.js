@@ -35,7 +35,7 @@ if (isLocalhost) {
   awsExports.oauth.redirectSignIn = signInURI[0]
   awsExports.oauth.redirectSignOut = signOutURI[0]
 
-} else if (window.location.hostname === "https://main.d1i6i6g25r1vzu.amplifyapp.com") {
+} else if (window.location.hostname === "main.d1i6i6g25r1vzu.amplifyapp.com") {
 
   awsExports.oauth.redirectSignIn = signInURI[1]
 
@@ -43,7 +43,7 @@ if (isLocalhost) {
 
 } else {
 
-  console.alert('This is not possible')
+  console.log('AMPLIFY NOT CONFIGURED PROPERLY')
 
 }
 // Check if you are in localhost or production
