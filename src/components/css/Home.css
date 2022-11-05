@@ -1,0 +1,45 @@
+@font-face {
+    font-family: PlayfairDisplay-BlackItalic;
+    src: url('../../fonts/PlayfairDisplay-BlackItalic.ttf'); 
+  }
+  
+  @font-face {
+    font-family: Poppins-Regular;
+    src: url('../../fonts/Poppins-Regular.ttf'); 
+  }
+  
+  
+  /*---------------------------------------------*/
+  .titleText {
+    font-family: PlayfairDisplay-BlackItalic;
+    font-size: 90px;
+    color: #333;
+    line-height: 1.1;
+  }
+
+  .subTitleText {
+    font-family: Poppins-Regular;
+    font-size: 35px;
+    color: #999;
+    line-height: 1.2;
+    display: flex;
+    justify-content: left;
+  }
+  
+.bg-img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* position: absolute; */
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.mycentered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80%
+}

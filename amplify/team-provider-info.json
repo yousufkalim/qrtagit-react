@@ -10,6 +10,11 @@
       "StackName": "amplify-qrtagitweb-dev-234413",
       "StackId": "arn:aws:cloudformation:us-west-2:635077240221:stack/amplify-qrtagitweb-dev-234413/e22ff170-5ccc-11ed-b06f-0200dd28705b",
       "AmplifyAppId": "d1i6i6g25r1vzu"
+    },
+    "categories": {
+      "auth": {
+        "qrtagitwebf0fc8380": {}
+      }
     }
   }
 }

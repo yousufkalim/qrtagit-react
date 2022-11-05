@@ -8,6 +8,46 @@ import reportWebVitals from './reportWebVitals';
 import {Amplify} from "aws-amplify";
 import awsExports from "./aws-exports";
 
+// Check if you are in localhost or production
+const isLocalhost = Boolean (
+
+  window.location.hostname === 'localhost' ||
+
+    // [::1] is the IPv6 localhost address.
+
+    window.location.hostname === '[::1]' ||
+
+    // 127.0.0.0/8 are considered localhost for IPv4.
+
+    window.location.hostname.match(
+
+      /^127(?:.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+
+    )
+)
+
+const signInURI = awsExports.oauth.redirectSignIn.split(',')
+
+const signOutURI = awsExports.oauth.redirectSignOut.split(',')
+
+if (isLocalhost) {
+
+  awsExports.oauth.redirectSignIn = signInURI[0]
+  awsExports.oauth.redirectSignOut = signOutURI[0]
+
+} else if (window.location.hostname === "https://main.d1i6i6g25r1vzu.amplifyapp.com") {
+
+  awsExports.oauth.redirectSignIn = signInURI[1]
+
+  awsExports.oauth.redirectSignOut = signOutURI[1]
+
+} else {
+
+  console.alert('This is not possible')
+
+}
+// Check if you are in localhost or production
+// Now we can Configure Resources
 Amplify.configure(awsExports);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
