@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Configure Amplify
 import {Amplify} from "aws-amplify";
 import awsExports from "./aws-exports";
 
+// Configure Amplify!!!!
 // Check if you are in localhost or production in order to configure the
 // redirect URLs properly.
 const isLocalhost = Boolean (

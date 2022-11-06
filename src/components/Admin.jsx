@@ -7,6 +7,7 @@ import axios from "axios"
 import { CSVLink } from "react-csv";
 import { QRCodeSVG } from 'qrcode.react';
 
+const apiURL = process.env.REACT_APP_API_URL
 
 function Admin({signOut, user}) {
     //tracking input in state
@@ -35,7 +36,7 @@ function Admin({signOut, user}) {
     //submition
     const onSubmit =(e)=>{
       e.preventDefault()
-        axios.post("http://localhost:4000/api/qrtags", formValues)
+        axios.post(apiURL + "/qrtags", formValues)
           .then( res => {
             // Loop through the items and add the QRTag
             const qrtags = res.data;
@@ -53,7 +54,7 @@ function Admin({signOut, user}) {
       
       const onDisplay =(e)=>{
         e.preventDefault()
-        axios.get("http://localhost:4000/api/qrtags")
+        axios.get(apiURL + "/qrtags")
         .then( res => {
           // Loop through the items and add the QRTag
           const qrtags = res.data;
