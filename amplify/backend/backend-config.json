@@ -1,15 +1,12 @@
 {
   "auth": {
-    "qrtagitwebf0fc8380": {
+    "qrtagitaee06a7b": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
-        "socialProviders": [
-          "FACEBOOK",
-          "GOOGLE"
-        ],
+        "socialProviders": [],
         "usernameAttributes": [
           "EMAIL",
           "PHONE_NUMBER"

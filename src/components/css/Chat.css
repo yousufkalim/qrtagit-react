@@ -1,0 +1,226 @@
+.Chat_MainContainer {
+  margin: 2% 0px 2% 10%;
+  width: 90%;
+  display: flex;
+}
+.Chat_LeftContainer {
+  width: 30%;
+}
+.Chat_LeftContainer h3 {
+  font-weight: 600;
+}
+.Chat_LeftContainer_SearchDiv {
+  padding: 3% 2%;
+  margin: 2% 0px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+.Chat_LeftContainer_SearchDiv input {
+  border: none;
+  background-color: transparent;
+  width: 90%;
+  outline: none;
+}
+.Chat_MessagesList {
+  margin-top: 2%;
+  overflow-y: scroll;
+  max-height: 80vh;
+}
+.Chat_MessageBox {
+  display: flex;
+  align-items: center;
+  padding: 2% 0px;
+}
+.Chat_MessageBox_Avatar {
+  margin: 2%;
+  width: 12%;
+}
+.Chat_MessageBox_Text {
+  line-height: 40%;
+  margin-top: 2%;
+  width: 50%;
+}
+.Chat_MessageBox_Text_P {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.Chat_MessageBox_DateDiv {
+  line-height: 50%;
+  width: 30%;
+  text-align: right;
+}
+.Chat_MessageBox_DateDiv p {
+  white-space: nowrap;
+}
+.Chat_MessageBox_Status {
+  display: flex;
+  justify-content: flex-end;
+}
+.Chat_MessageBox_Count {
+  background: #0c80a0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  border-radius: 50%;
+  color: #ffffff;
+}
+.Chat_MessageBox_Divider {
+  height: 1px;
+  width: 100%;
+  background-color: rgb(221, 221, 221);
+}
+.Chat_RightContainer {
+  width: 69%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.Chat_RightContainer_TitleDiv {
+  display: flex;
+  align-items: center;
+  padding: 2%;
+}
+.Chat_SenderNameDiv {
+  line-height: 50%;
+  margin: 1% 0px 0px 2%;
+  width: 50%;
+}
+.Chat_SenderNameDiv p {
+  line-height: 100%;
+}
+.Chat_ChatDivider {
+  height: 1px;
+  width: 100%;
+  background-color: rgb(221, 221, 221);
+  margin-bottom: 2%;
+}
+.Chat_ChatDiv {
+  padding: 1% 2%;
+  width: 75%;
+  overflow-y: scroll;
+  height: 65vh;
+}
+.Chat_RevievedChatDiv {
+  display: flex;
+}
+.Chat_RevievedChatSubDiv {
+  width: 15px;
+  height: 15px;
+  margin-top: 6%;
+  background: #eeeeee;
+  border-radius: 50%;
+}
+.Chat_RevievedChatSubDiv_P {
+  padding: 2% 3%;
+  background: #eeeeee;
+  width: fit-content;
+  border-radius: 25px;
+}
+.Chat_RevievedChatSubDiv_Time {
+  padding: 0 2%;
+  color: #818181;
+}
+.Chat_SenderChatDiv {
+  text-align: right;
+}
+.Chat_SenderChatSubDiv {
+  display: flex;
+  justify-content: flex-end;
+}
+.Chat_SenderChatSubDiv_P {
+  padding: 2% 3%;
+  background: #0a3f74;
+  width: fit-content;
+  border-radius: 25px;
+  color: #ffffff;
+}
+.Chat_SenderChatSubDiv_Time {
+  color: #818181;
+}
+.Chat_TypingDivider {
+  height: 1px;
+  width: 100%;
+  background-color: rgb(221, 221, 221);
+  margin-bottom: 2%;
+}
+.Chat_TypingDiv {
+  display: flex;
+  align-items: center;
+}
+.Chat_TypingSubDiv {
+  width: 60%;
+  margin: 2% 3%;
+  padding: 1%;
+  border: 1px solid rgb(221, 221, 221);
+  display: flex;
+  border-radius: 10px;
+}
+.Chat_TypingSubDiv input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0px 2%;
+}
+.Chat_SendBtn {
+  background-color: rgb(12, 128, 160);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.1%;
+  border-radius: 10px;
+}
+.Chat_MainContainer_Mob {
+  display: none;
+}
+@media only screen and (max-width: 1660px) {
+  .Chat_MainContainer {
+    width: 100%;
+  }
+  .Chat_MessageBox_Text {
+    width: 48%;
+    padding-left: 2%;
+  }
+  .Chat_MessageBox_DateDiv p {
+    font-size: 0.9rem;
+  }
+  .Chat_ChatDiv {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .Chat_MessageBox_DateDiv p {
+    font-size: 0.8rem;
+  }
+  .Chat_MessageBox_Text {
+    padding-left: 5%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .Chat_MainContainer {
+    display: none;
+  }
+  .Chat_MainContainer_Mob {
+    margin: 2% 0px 2% 10%;
+    width: 90%;
+    display: flex;
+  }
+  .Chat_LeftContainer_SearchDiv {
+    width: 100%;
+  }
+  .Chat_LeftContainer {
+    width: 90%;
+  }
+  .Chat_RightContainer {
+    width: 90%;
+  }
+  .Chat_ChatDiv {
+    width: 100%;
+  }
+  .Chat_TypingSubDiv {
+    width: 100%;
+  }
+}
