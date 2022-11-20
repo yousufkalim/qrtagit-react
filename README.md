@@ -1,18 +1,52 @@
-# Getting Started with Create React App
+# QRTag.it Webapp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Development Mode Setup
+Checkout the repository and then \
+`cd qrtagit-web` \
+`npm install`
 
-## Available Scripts
 
-In the project directory, you can run:
+### Configure Amplify
+While still in the qrtagit-web directory run the following: \
+`sudo npm install -g @aws-amplify/cli` \
+`amplify configure` and setup a new aws profile - be sure to save the key and secret key for your new IAM role \
+`amplify pull --appId d1i6i6g25r1vzu --envName dev`
+```terminal
+ ? Select the authentication method you want to use: AWS profile
+
+For more information on AWS Profiles, see:
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html
+
+? Please choose the profile you want to use amplify-googleTest
+Amplify AppID found: d1i6i6g25r1vzu. Amplify App name is: qrtagitweb
+Backend environment dev found in Amplify Console app: qrtagitweb
+? Choose your default editor: Visual Studio Code
+? Choose the type of app that you're building javascript
+Please tell us about your project
+? What javascript framework are you using react
+? Source Directory Path:  src
+? Distribution Directory Path: build
+? Build Command:  npm run-script build
+? Start Command: npm run-script start
+? Do you plan on modifying this backend? Yes
+✔ Successfully pulled backend environment dev from the cloud.
+```
+`amplify pull` to ensure there are no errors. \
+\
+Check for any modified files in the ./amplify directory to ensure the `amplify pull` commands didn't delete or change anything. If it has, you can reset those files locally.
+
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
+Pages will reload when you make changes.\
 You may also see any lint errors in the console.
+
+[http://localhost:3000/admin](http://localhost:3000/admin)\
+This page displays a simple form to generate QRTags. It requires authentication, but new users can signup using the code and UI provided by AWS Amplify. \
+Selecting the 'create with local IP address' checkbox generates a URL that allows you scan the generated code that launches a mockup with that UUID.
 
 ### `npm test`
 
