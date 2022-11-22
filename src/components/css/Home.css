@@ -25,6 +25,15 @@
     display: flex;
     justify-content: left;
   }
+
+  .bodyText {
+    font-family: Poppins-Regular;
+    font-size: 14px;
+    color: #999;
+    line-height: 1.2;
+    display: flex;
+    justify-content: left;
+  }
   
 .bg-img {
     background-position: center;

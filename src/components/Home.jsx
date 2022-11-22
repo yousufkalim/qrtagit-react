@@ -1,10 +1,17 @@
 import './css/Home.css';
 import logo from '../images/qrtag.png';
 import background from '../images/background.jpg';
-
+import Login from './Login'
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import '@aws-amplify/ui-react/styles.css'
 
 function Home() {
+    const { signOut, user } = useAuthenticator((context) => [context.user])
+
     return (
+      <>
+      {!user ? <Login /> : 
+
       <div className="container-fluid">
       <div className="row row-cols-1 row-cols-lg-2">
         <div className="col px-5">
@@ -21,6 +28,8 @@ function Home() {
                 <p className="subTitleText">
                   QRTag.it
                 </p>
+                  <div className="px-2 bodyText">Hello {user.attributes.email}</div>
+                  <div className="p-2"><button onClick={signOut} className="btn btn-sm btn-outline-secondary btn-rounded">Sign out</button></div>
                 </div>
               </div>
             </div>
@@ -31,7 +40,8 @@ function Home() {
       </div>
     </div>
 	</div>
+  }
+  </>
     );
   }
-
   export default Home
