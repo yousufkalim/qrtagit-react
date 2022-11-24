@@ -6,20 +6,12 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css'
 
 function Home() {
-    const { signOut, user } = useAuthenticator((context) => [context.user])
-    
-    var email = ""
-    try {
-      if (user){
-        email = user.attributes.email    
-      }
-    } catch (error) {
-      console.log(error)
-    }
-        
-    return (
-      <>
-      {!user ? <Login /> : 
+  const { signOut, authStatus, user } = useAuthenticator((context) => [context.user, context.authStatus])
+         
+  return (
+    <>
+    {authStatus === 'configuring' && 'Loading...'}
+    {authStatus !== 'authenticated' ? <Login /> : 
 
       <div className="container-fluid">
       <div className="row row-cols-1 row-cols-lg-2">
@@ -37,7 +29,7 @@ function Home() {
                 <p className="subTitleText">
                   QRTag.it
                 </p>
-                  <div className="px-2 bodyText">Hello {email}</div>
+                  <div className="px-2 bodyText">Hello {user.attributes.email}</div>
                   <div className="p-2"><button onClick={signOut} className="btn btn-sm btn-outline-secondary btn-rounded">Sign out</button></div>
                 </div>
               </div>
