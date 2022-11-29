@@ -1,23 +1,27 @@
 @font-face {
-  font-family: PlayfairDisplay-BlackItalic;
+  /* font-family: PlayfairDisplay-BlackItalic; */
+  font-family: 'Inter', sans-serif;
   src: url('./fonts/PlayfairDisplay-BlackItalic.ttf');
 }
 
 @font-face {
-  font-family: Poppins-Regular;
+  /* font-family: Poppins-Regular; */
+  font-family: 'Inter', sans-serif;
   src: url('./fonts/Poppins-Regular.ttf');
 }
 
 /*---------------------------------------------*/
 .titleText {
-  font-family: PlayfairDisplay-BlackItalic;
+  /* font-family: PlayfairDisplay-BlackItalic; */
+  font-family: 'Inter', sans-serif;
   font-size: 90px;
   color: #333;
   line-height: 1.1;
 }
 
 .subTitleText {
-  font-family: Poppins-Regular;
+  /* font-family: Poppins-Regular; */
+  font-family: 'Inter', sans-serif;
   font-size: 35px;
   color: #999;
   line-height: 1.2;

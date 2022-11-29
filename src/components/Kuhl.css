@@ -26,7 +26,8 @@
 }
 
 .Kuhl-footer {
-  font-family: Poppins-Regular;
+  /* font-family: Poppins-Regular; */
+  font-family: 'Inter', sans-serif;
   font-size: 35px;
   color: #999;
   line-height: 1.2;
