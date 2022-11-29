@@ -25,19 +25,27 @@
   margin-bottom: 10%;
 }
 .LogIn_HeadingDiv h2 {
+  color: #000000;
   font-size: 2.5rem;
   font-weight: 600;
 }
+.LogIn_HeadingDiv p {
+  color: #000000;
+  font-weight: 400;
+}
+
 .LogIn_InputDiv {
   display: flex;
   flex-direction: column;
 }
 .LogIn_InputDiv h3 {
   font-weight: 600;
+  color: #000000;
 }
 .LogIn_InputEmail {
   padding: 3% 2%;
   margin: 2% 0;
+  background: #ffffff;
   border: 1px solid #818181;
   border-radius: 5px;
   outline: none;
@@ -58,6 +66,10 @@
 .LogIn_ForgotPasswordDiv {
   display: flex;
   justify-content: flex-end;
+}
+.LogIn_ForgotPasswordLink {
+  color: #0a3f74 !important;
+  font-weight: 600 !important;
 }
 .LogIn_ForgotPasswordDiv p {
   color: #0a3f74;
@@ -83,6 +95,7 @@
 }
 .LogIn_SignUpDiv {
   text-align: center;
+  color: #1c1c1c;
 }
 .LogIn_SignUpDiv span {
   color: #0a3f74;
@@ -100,9 +113,9 @@
 }
 .LogIn_DividerDiv p {
   font-weight: 600;
-  color: #0a3f74;
+  color: #1c1c1c;
   margin-top: 3%;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .LogIn_SignInOptions {
   text-align: center;
@@ -125,6 +138,21 @@
 }
 .LogIn_SocialDiv img {
   width: 25%;
+}
+.OtpInputBox {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+.OtpInputBox input {
+  width: 60% !important;
+  height: 3rem;
+  border: 1px solid #0a3f74 !important;
+  border-radius: 5px !important;
+  color: #000000 !important;
+}
+::placeholder {
+  color: #818181;
 }
 @media only screen and (max-width: 1366px) {
   .LogIn_FormDiv {

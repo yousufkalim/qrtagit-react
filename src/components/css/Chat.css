@@ -1,17 +1,21 @@
 .Chat_MainContainer {
-  margin: 2% 0px 2% 10%;
+  margin: 0 0 2% 10%;
+
   width: 90%;
   display: flex;
 }
 .Chat_LeftContainer {
   width: 30%;
+  /* border-right: ; */
+  padding-top: 2%;
+  border-right: 1px solid #dddddd;
 }
 .Chat_LeftContainer h3 {
   font-weight: 600;
 }
 .Chat_LeftContainer_SearchDiv {
-  padding: 3% 2%;
-  margin: 2% 0px;
+  padding: 2%;
+  margin: 5% 0;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 5px;
   display: flex;
@@ -27,7 +31,12 @@
 .Chat_MessagesList {
   margin-top: 2%;
   overflow-y: scroll;
+  /* scrollbar-width: none; */
+
   max-height: 80vh;
+}
+.Chat_MessagesList::-webkit-scrollbar {
+  display: none;
 }
 .Chat_MessageBox {
   display: flex;
@@ -54,6 +63,7 @@
 }
 .Chat_MessageBox_DateDiv p {
   white-space: nowrap;
+  color: #767272;
 }
 .Chat_MessageBox_Status {
   display: flex;
@@ -74,6 +84,7 @@
   background-color: rgb(221, 221, 221);
 }
 .Chat_RightContainer {
+  padding-top: 1%;
   width: 69%;
   display: flex;
   flex-direction: column;
@@ -103,6 +114,9 @@
   width: 75%;
   overflow-y: scroll;
   height: 65vh;
+}
+.Chat_ChatDiv::-webkit-scrollbar {
+  display: none;
 }
 .Chat_RevievedChatDiv {
   display: flex;
@@ -164,6 +178,9 @@
   border: none;
   outline: none;
   padding: 0px 2%;
+}
+.Chat_TypingSubDiv input::placeholder {
+  color: #303030;
 }
 .Chat_SendBtn {
   background-color: rgb(12, 128, 160);

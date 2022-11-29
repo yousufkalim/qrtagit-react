@@ -1,10 +1,9 @@
 .Navbar_Container {
-  padding: 1% 5% 1% 10%;
+  padding: 1% 5% 0.5% 10%;
   background: #0a3f74;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  width: 100%;
 }
 .Navbar_LogoDiv {
   display: flex;
@@ -34,7 +33,7 @@
   white-space: nowrap;
 }
 .Navbar_MenuLinks p {
-  margin: 0 3%;
+  margin: 0 5%;
   color: #ffffff;
   font-weight: 400;
 }
@@ -42,7 +41,7 @@
   position: absolute;
   right: 5%;
   background: #ffffff;
-  width: 15%;
+  width: 16%;
   color: #000000;
   border-radius: 10px;
   border: 1px solid #dddddd;
@@ -122,20 +121,20 @@
   }
   .Navbar_CollapseDiv {
     right: 2%;
-    width: 30%;
+    width: 37%;
   }
 }
 @media only screen and (max-width: 600px) {
   .Navbar_MenuContainer {
-    width: 21%;
+    width: 22%;
   }
   .Navbar_CollapseDiv {
     right: 2%;
-    width: 40%;
+    width: 41%;
   }
 }
 @media only screen and (max-width: 480px) {
   .Navbar_CollapseDiv {
-    width: 50%;
+    width: 52%;
   }
 }
