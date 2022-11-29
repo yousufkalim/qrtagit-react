@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react';
+import React, { useState } from 'react';
 import QRLogo from '../../images/navbar-logo.svg';
 import LogoText from '../../images/logotext.svg';
 import HomeLogo from '../../images/navbar-home-logo.svg';
@@ -10,16 +10,9 @@ import AvatarLogo from '../../images/navbar-avatar.png';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Link, useNavigate } from 'react-router-dom';
-import BasicModal from './locationPopup';
 
-import {
-  Button,
-  Collapse,
-  List,
-  ListItemButton,
-  ListItemText,
-} from '@mui/material';
-import { Auth, button } from 'aws-amplify';
+import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
+import { Auth } from 'aws-amplify';
 import { PulseLoader } from 'react-spinners';
 
 function Navbar() {
@@ -46,7 +39,7 @@ function Navbar() {
         <div className='Navbar_MenuContainer'>
           <div className='Navbar_MenuDiv'>
             <Link to='/' className='Navbar_MenuLinks'>
-              <img src={HomeLogo} />
+              <img style={{ marginRight: '8%' }} src={HomeLogo} />
               <p>Home</p>
             </Link>
             <Link to='/about' className='Navbar_MenuLinks'>
@@ -63,10 +56,7 @@ function Navbar() {
             </Link>
           </div>
           {!isLogin ? (
-            <div
-              className='LogIn_BtnDiv'
-              onClick={() => (window.location = '/')}
-            >
+            <div className='LogIn_BtnDiv' onClick={() => (window.location = '/')}>
               <button className='LogIn_Btn'>
                 <div> Sign In</div>
               </button>
@@ -112,18 +102,17 @@ function Navbar() {
           )}
         </div>
       </div>
-      <Collapse
-        className='Navbar_CollapseDiv'
-        in={open}
-        timeout='auto'
-        unmountOnExit
-      >
+      <Collapse className='Navbar_CollapseDiv' in={open} timeout='auto' unmountOnExit>
         <List disablePadding>
           <ListItemButton>
             <ListItemText>
-              <div className='Navbar_CollapseText'>
-                {userData?.email || 'user@qrtagit.com'}
-              </div>
+              <div className='Navbar_CollapseText'>{userData?.name || 'Username'}</div>
+            </ListItemText>
+          </ListItemButton>
+          <div className='Navbar_CollapseDivider' />
+          <ListItemButton>
+            <ListItemText>
+              <div className='Navbar_CollapseText'>{userData?.email || 'user@qrtagit.com'}</div>
             </ListItemText>
           </ListItemButton>
           <div className='Navbar_CollapseDivider' />
@@ -170,14 +159,13 @@ function Navbar() {
               Auth.signOut().finally(() => {
                 nav('/');
               });
+              localStorage.setItem('isLoggedIn', 'false');
             }}
           >
             <ListItemText>
               <div className='Navbar_SignOutDiv'>
                 <div className='Navbar_CollapseText'> SignOut</div>
-                <div>
-                  {loading && <PulseLoader size={10} color='#0A3F74' />}
-                </div>
+                <div>{loading && <PulseLoader size={10} color='#0A3F74' />}</div>
               </div>
             </ListItemText>
           </ListItemButton>

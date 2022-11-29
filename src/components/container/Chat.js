@@ -5,7 +5,7 @@ import Search from '../../images/search-icon.svg';
 import { ReactComponent as DoubleTick } from '../../images/double-tick.svg';
 import AvatarLogo from '../../images/navbar-avatar.png';
 import AttachIcon from '../../images/attach-icon.svg';
-import SendIcon from '../../images/send-icon.svg';
+import SendIcon from '../../images/send_icon.svg';
 import { useState } from 'react';
 
 function Chat() {

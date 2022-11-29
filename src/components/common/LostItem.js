@@ -44,12 +44,7 @@ function LostItem() {
             </div>
             <div className='LostItem_LowerImageDiv'>
               {lostItem?.photos?.map((item) => {
-                return (
-                  <img
-                    onClick={() => setMainImage(item.photo)}
-                    src={item.photo}
-                  />
-                );
+                return <img onClick={() => setMainImage(item.photo)} src={item.photo} />;
               })}
             </div>
           </div>
@@ -104,11 +99,7 @@ function LostItem() {
                 This item is currently <span>lost</span>.
               </p>
               <div className='LostItem_FoundBtn'>
-                <BasicModal
-                  btnText='Mark as found'
-                  btnColor='#ffffff'
-                  location
-                />
+                <BasicModal btnText='Mark as found' btnColor='#ffffff' location />
               </div>
               <div className='LostItem_ChatBtn'>
                 <BasicModal btnText='Chat with owner' />

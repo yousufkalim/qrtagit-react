@@ -8,9 +8,9 @@ import '@aws-amplify/ui-react/styles.css';
 import axios from 'axios';
 import { CSVLink } from 'react-csv';
 import { QRCodeSVG } from 'qrcode.react';
-import awsConfig from '../../config/awsConfig';
+// import awsConfig from '../../config/awsConfig';
 
-Amplify.configure(awsConfig);
+// Amplify.configure(awsConfig);
 
 function Admin({ signOut, user }) {
   //tracking input in state
