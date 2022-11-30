@@ -2,7 +2,8 @@ import './App.css';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import Admin from './components/container/Admin';
-import Home from './components/container/Home.js';
+// import Home from './components/container/Home.js';
+import Home from './components/Home';
 import Scanned from './components/container/Scanned';
 import NotFound from './components/NotFound';
 import About from './components/container/About';
@@ -11,9 +12,11 @@ import SignUp from './components/container/SignUp';
 import ForgetPassword from './components/container/ForgetPassword';
 import ConfirmPassword from './components/container/ConfirmPassword';
 import VerificationCode from './components/container/VerificationCode';
+import Store from './components/Store';
+
 import Chat from './components/container/Chat';
 import { useEffect, useState } from 'react';
-import { Hub } from 'aws-amplify';
+import { Hub, Auth } from 'aws-amplify';
 import Navbar from './components/common/Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -63,8 +66,13 @@ function App() {
       switch (event) {
         case 'signIn':
           setIsLogin(true);
+          Auth.currentAuthenticatedUser().then((res) => {
+            console.log({ res });
+            localStorage.setItem('userData', JSON.stringify(res.attributes));
+          });
+
           localStorage.setItem('isLoggedIn', 'true');
-          localStorage.setItem('userData', JSON.stringify(data.attributes));
+          // localStorage.setItem('userData', JSON.stringify(data.attributes));
           console.log({
             event,
             data,
@@ -119,6 +127,8 @@ function App() {
             <Route path='admin' element={<Admin />} />
             <Route path='/viewitems' element={<Home />} />
             {/* <Route path='/' element={<Home />} /> */}
+            <Route path='store' element={<Store />} />
+
             <Route path='/' element={<About />} />
             <Route path='/about' element={<About />} />
           </>

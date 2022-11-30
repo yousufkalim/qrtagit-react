@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import QRLogo from '../../images/navbar-logo.svg';
 import LogoText from '../../images/logotext.svg';
-import HomeLogo from '../../images/navbar-home-logo.svg';
+// import HomeLogo from '../../images/navbar-home-logo.svg';
 import AboutIcon from '../../images/navbar-about-icon.svg';
 import MessageIcon from '../../images/navbar-message-icon.svg';
 import DownloadIcon from '../../images/navbar-download-icon.svg';
@@ -10,7 +10,7 @@ import AvatarLogo from '../../images/navbar-avatar.png';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Link, useNavigate } from 'react-router-dom';
-
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import { Auth } from 'aws-amplify';
 import { PulseLoader } from 'react-spinners';
@@ -38,10 +38,10 @@ function Navbar() {
         </div>
         <div className='Navbar_MenuContainer'>
           <div className='Navbar_MenuDiv'>
-            <Link to='/' className='Navbar_MenuLinks'>
+            {/* <Link to='/' className='Navbar_MenuLinks'>
               <img style={{ marginRight: '8%' }} src={HomeLogo} />
               <p>Home</p>
-            </Link>
+            </Link> */}
             <Link to='/about' className='Navbar_MenuLinks'>
               <img src={AboutIcon} />
               <p>About Us</p>
@@ -49,6 +49,11 @@ function Navbar() {
             <Link to='/chat' className='Navbar_MenuLinks'>
               <img src={MessageIcon} />
               <p>Messages</p>
+            </Link>
+            <Link to='/store' className='Navbar_MenuLinks'>
+              {/* <img src={MessageIcon} /> */}
+              <ShoppingCartOutlinedIcon />
+              <p>Store</p>
             </Link>
             <Link to='/viewitems' className='Navbar_MenuLinks'>
               <img src={DownloadIcon} />
@@ -117,14 +122,14 @@ function Navbar() {
           </ListItemButton>
           <div className='Navbar_CollapseDivider' />
           <div className='Navbar_CollapseDiv_Mob'>
-            <ListItemButton>
+            {/* <ListItemButton>
               <ListItemText sx={{ margin: '0' }}>
                 <Link to='/' className='Navbar_CollapseText'>
                   <p>Home</p>
                 </Link>
               </ListItemText>
             </ListItemButton>
-            <div className='Navbar_CollapseDivider' />
+            <div className='Navbar_CollapseDivider' /> */}
             <ListItemButton>
               <ListItemText sx={{ margin: '0' }}>
                 <Link to='/about' className='Navbar_CollapseText'>
@@ -137,6 +142,14 @@ function Navbar() {
               <ListItemText sx={{ margin: '0' }}>
                 <Link to='/chat' className='Navbar_CollapseText'>
                   <p>Messages</p>
+                </Link>
+              </ListItemText>
+            </ListItemButton>
+            <div className='Navbar_CollapseDivider' />
+            <ListItemButton>
+              <ListItemText sx={{ margin: '0' }}>
+                <Link to='/store' className='Navbar_CollapseText'>
+                  <p>Store</p>
                 </Link>
               </ListItemText>
             </ListItemButton>
