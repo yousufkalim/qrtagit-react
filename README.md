@@ -1,16 +1,18 @@
 # QRTag.it Webapp
 
 ## Development Mode Setup
+
 Checkout the repository and then \
-`cd qrtagit` \
+`cd qrtagit-web` \
 `npm install`
 
-
 ### Configure Amplify
-While still in the qrtagit directory run the following: \
+
+While still in the qrtagit-web directory run the following: \
 `sudo npm install -g @aws-amplify/cli` \
 `amplify configure` and setup a new aws profile - be sure to save the key and secret key for your new IAM role \
-`amplify pull --appId duynaw1fxyqex --envName dev`
+`amplify pull --appId d1i6i6g25r1vzu --envName dev`
+
 ```terminal
  ? Select the authentication method you want to use: AWS profile
 
@@ -18,8 +20,8 @@ For more information on AWS Profiles, see:
 https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html
 
 ? Please choose the profile you want to use amplify-googleTest
-Amplify AppID found: duynaw1fxyqex. Amplify App name is: qrtagit
-Backend environment dev found in Amplify Console app: qrtagit
+Amplify AppID found: d1i6i6g25r1vzu. Amplify App name is: qrtagitweb
+Backend environment dev found in Amplify Console app: qrtagitweb
 ? Choose your default editor: Visual Studio Code
 ? Choose the type of app that you're building javascript
 Please tell us about your project
@@ -28,16 +30,13 @@ Please tell us about your project
 ? Distribution Directory Path: build
 ? Build Command:  npm run-script build
 ? Start Command: npm run-script start
-Browserslist: caniuse-lite is outdated. Please run:
-  npx browserslist@latest --update-db
-  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 ? Do you plan on modifying this backend? Yes
 ✔ Successfully pulled backend environment dev from the cloud.
 ```
+
 `amplify pull` to ensure there are no errors. \
 \
 Check for any modified files in the ./amplify directory to ensure the `amplify pull` commands didn't delete or change anything. If it has, you can reset those files locally.
-
 
 ### `npm start`
 

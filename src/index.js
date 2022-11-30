@@ -5,31 +5,34 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import Kuhl from './components/Kuhl';
 import KuhlRecyle from './components/KuhlRecylce';
-
+import { Authenticator } from '@aws-amplify/ui-react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // Determine which root element will be utilized based on the domain/host name.
 // const hostname = "kuhl.qrtag.it"
 // const hostname = "www.qrtag.it"
-const hostname = window.location.hostname
-const host = hostname.split(".")[0]
+const hostname = window.location.hostname;
+const host = hostname.split('.')[0];
 
-let rootComponent = ""
+let rootComponent = '';
 switch (host) {
-  case "kuhl":
-    rootComponent = (<KuhlRecyle />)
+  case 'kuhl':
+    rootComponent = <KuhlRecyle />;
     break;
-  case "www":
-      rootComponent = (<App />)
-      break;
-  default: 
-  rootComponent = (<App />)
+  case 'www':
+    rootComponent = <App />;
+    break;
+  default:
+    rootComponent = <App />;
 }
 
 root.render(
   <React.StrictMode>
-    {rootComponent}
+    <Authenticator.Provider>
+      {rootComponent}
+      {/* <App /> */}
+    </Authenticator.Provider>
   </React.StrictMode>
 );
 
