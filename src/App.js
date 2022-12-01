@@ -73,7 +73,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='*' element={<NotFound />} />
-        <Route path='uid/:uid' element={<Scanned />} />
+        <Route path='uuid/:uid' element={<Scanned />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
