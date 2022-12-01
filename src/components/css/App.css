@@ -52,3 +52,6 @@
   justify-content: center;
   height: 80%
 }
+.doubleTick {
+  transform: scale(0.7);
+}

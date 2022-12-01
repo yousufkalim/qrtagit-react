@@ -1,6 +1,6 @@
 
 import propTypes from "prop-types"
-import Table from "./common/table"
+import Table from "../common/table"
 
 const columns = [{path: "qrtag", key:1, label: "QRTag" }, {path: "uuid", key:2, label: "UUID" },{ path: "url", key: 3, label: "URL"}]
 const sortColumn = { path: "uuid", order: "asc" }

@@ -1,0 +1,140 @@
+.Navbar_Container {
+  padding: 1% 5% 0.5% 10%;
+  background: #0a3f74;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.Navbar_LogoDiv {
+  display: flex;
+  width: 13%;
+  justify-content: space-between;
+}
+.Navbar_LogoText {
+  width: 70%;
+  margin-left: 5%;
+}
+.Navbar_MenuContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+.Navbar_MenuDiv {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 70%;
+}
+.Navbar_MenuLinks {
+  display: flex;
+  margin: 0 3%;
+  align-items: center;
+  white-space: nowrap;
+}
+.Navbar_MenuLinks p {
+  margin: 0 5%;
+  color: #ffffff;
+  font-weight: 400;
+}
+.Navbar_CollapseDiv {
+  position: absolute;
+  right: 5%;
+  background: #ffffff;
+  width: 16%;
+  color: #000000;
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+  box-shadow: 0px 7px 11px rgba(0, 0, 0, 0.09);
+  overflow: hidden;
+  z-index: 1;
+}
+.Navbar_CollapseDivider {
+  height: 1px;
+  width: 100%;
+  background: #dddddd;
+}
+.Navbar_SignOutDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Navbar_CollapseText {
+  display: flex !important;
+  align-items: center !important;
+  color: #000000;
+  overflow: hidden;
+}
+.Navbar_CollapseText p {
+  color: #000000;
+}
+.Navbar_CollapseText img {
+  background: #000000;
+}
+.Navbar_CollapseDiv_Mob {
+  display: none;
+}
+@media only screen and (max-width: 1450px) {
+  .Navbar_CollapseDiv {
+    right: 5%;
+    width: 18%;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  .Navbar_CollapseText {
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .Navbar_CollapseDiv {
+    right: 5%;
+    width: 20%;
+  }
+  .Navbar_MenuContainer {
+    width: 60%;
+  }
+  .Navbar_MenuLinks p {
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .Navbar_CollapseDiv {
+    right: 5%;
+    width: 25%;
+  }
+  .Navbar_MenuContainer {
+    width: 60%;
+  }
+  .Navbar_MenuLinks p {
+    font-size: 0.8rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .Navbar_MenuDiv {
+    display: none;
+  }
+  .Navbar_CollapseDiv_Mob {
+    display: block;
+  }
+  .Navbar_MenuContainer {
+    width: 15%;
+  }
+  .Navbar_CollapseDiv {
+    right: 2%;
+    width: 37%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .Navbar_MenuContainer {
+    width: 22%;
+  }
+  .Navbar_CollapseDiv {
+    right: 2%;
+    width: 41%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .Navbar_CollapseDiv {
+    width: 52%;
+  }
+}

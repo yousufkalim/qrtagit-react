@@ -1,0 +1,65 @@
+.About_Container {
+  margin: 2% 0 2% 10%;
+}
+.About_Container h3 {
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 2%;
+}
+.About_ImageDiv {
+  width: 80%;
+  background: #0a3f74;
+  padding: 3% 2%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 10px;
+}
+.About_ImageDiv img {
+  width: 11%;
+}
+.About_TextDiv {
+  font-weight: 400;
+  color: rgb(28, 28, 28);
+  width: 80%;
+  margin: 2% 0;
+}
+@media only screen and (max-width: 900px) {
+  .About_ImageDiv {
+    width: 85%;
+    padding: 5% 2%;
+  }
+  .About_ImageDiv img {
+    width: 15%;
+  }
+  .About_TextDiv {
+    width: 85%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .About_ImageDiv {
+    width: 90%;
+    padding: 5% 4%;
+    justify-content: center;
+  }
+  .About_ImageDiv img {
+    width: 25%;
+  }
+  .About_TextDiv {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .About_ImageDiv {
+    width: 90%;
+    padding: 7% 4%;
+    justify-content: center;
+  }
+  .About_ImageDiv img {
+    width: 40%;
+  }
+  .About_TextDiv {
+    width: 90%;
+    margin: 5% 0;
+  }
+}

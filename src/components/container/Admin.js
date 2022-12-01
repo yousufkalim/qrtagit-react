@@ -126,6 +126,3 @@ function Admin({signOut, user}) {
   }
 
   export default withAuthenticator(Admin);
-
-
-  

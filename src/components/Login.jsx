@@ -1,4 +1,4 @@
-import './css/Home.css';
+import './css/App.css';
 import logo from '../images/qrtag.png';
 import background from '../images/background.jpg';
 import { Authenticator } from "@aws-amplify/ui-react";
