@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import '../../App.css';
+import '../css/App.css';
 import Navbar from '../common/Navbar';
 import Search from '../../images/search-icon.svg';
 import { ReactComponent as DoubleTick } from '../../images/double-tick.svg';

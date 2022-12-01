@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import '../../App.css';
+import '../css/App.css';
 import QR_BG from '../../images/login-bg.svg';
 import FB_Logo from '../../images/facebook-logo.svg';
 import Apple_Logo from '../../images/apple-logo.svg';

@@ -1,4 +1,4 @@
-import '../../App.css';
+import '../css/App.css';
 import logo from '../../images/qrtag.png';
 import background from '../../images/background.jpg';
 
@@ -30,4 +30,4 @@ function Home() {
   );
 }
 
-export default Home;
+  export default Home

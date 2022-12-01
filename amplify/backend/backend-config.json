@@ -1,6 +1,6 @@
 {
   "auth": {
-    "qrtagitaee06a7b": {
+    "qrtagitwebf0fc8380": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import '../../App.css';
+import '../css/App.css';
 import Navbar from '../common/Navbar';
 import QRTag from '../../images/about-QRTag.svg';
 import DownloadLink from '../common/DownloadLink';
