@@ -1,4 +1,4 @@
-import './components/css/App.css'
+import './components/css/App.css';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import Admin from './components/container/Admin';
@@ -18,7 +18,6 @@ import { useEffect, useState } from 'react';
 import { Hub, Auth } from 'aws-amplify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 function App() {
   const [isLogin, setIsLogin] = useState(localStorage.getItem('isLoggedIn') === 'true');
@@ -72,7 +71,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='*' element={<NotFound />} />
+        <Route path='*' element={<About />} />
         <Route path='uuid/:uid' element={<Scanned />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/signup' element={<SignUp />} />

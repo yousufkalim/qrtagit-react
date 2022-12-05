@@ -31,6 +31,7 @@
   margin: 0 3%;
   align-items: center;
   white-space: nowrap;
+  text-decoration: none;
 }
 .Navbar_MenuLinks p {
   margin: 0 5%;
@@ -64,6 +65,7 @@
   align-items: center !important;
   color: #000000;
   overflow: hidden;
+  text-decoration: none;
 }
 .Navbar_CollapseText p {
   color: #000000;
