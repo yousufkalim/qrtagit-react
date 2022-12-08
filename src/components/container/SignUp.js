@@ -3,10 +3,11 @@ import '../css/App.css';
 import QR_BG from '../../images/login-bg.svg';
 import FB_Logo from '../../images/facebook-logo.svg';
 import Apple_Logo from '../../images/apple-logo.svg';
-import Google_Logo from '../../images/google-logo.svg';
+import Google_Logo from '../../images/google.svg';
 import HidePassword from '../../images/hide-password.svg';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import { Auth } from 'aws-amplify';
 import { useState } from 'react';
 import { PulseLoader } from 'react-spinners';
@@ -179,9 +180,28 @@ function SignUp() {
             </div>
             <div className='LogIn_SocialContainer'>
               <div className='LogIn_SocialDiv'>
-                <img src={FB_Logo} />
-                <img src={Apple_Logo} />
-                <img src={Google_Logo} />
+                <div
+                  onClick={() =>
+                    Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Facebook })
+                  }
+                >
+                  <img style={{ width: '100%' }} src={FB_Logo} />
+                </div>
+                <div
+                  onClick={() =>
+                    Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Apple })
+                  }
+                >
+                  <img style={{ width: '100%' }} src={Apple_Logo} />
+                </div>
+                <div
+                  style={{ background: '#0a3f74', borderRadius: '50%', padding: '4.5%' }}
+                  onClick={() =>
+                    Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })
+                  }
+                >
+                  <img style={{ width: '100%' }} src={Google_Logo} />
+                </div>
               </div>
             </div>
           </form>

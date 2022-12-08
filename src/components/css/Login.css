@@ -176,10 +176,12 @@
     height: 100%;
   }
   .LogIn_ImageDiv {
+    display: none;
     width: 100%;
     height: 70vh;
   }
   .LogIn_RightDiv {
+    margin-top: 5%;
     padding: 5% 0;
     width: 100%;
   }

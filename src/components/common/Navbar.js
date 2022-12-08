@@ -52,7 +52,7 @@ function Navbar() {
             </Link>
             <Link to='/store' className='Navbar_MenuLinks'>
               {/* <img src={MessageIcon} /> */}
-              <ShoppingCartOutlinedIcon />
+              <ShoppingCartOutlinedIcon sx={{ color: '#fff' }} />
               <p>Store</p>
             </Link>
             <Link to='/viewitems' className='Navbar_MenuLinks'>
