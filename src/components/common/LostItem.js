@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 import BasicModal from './locationPopup';
 import Axios from '../../config/axios';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import About from '../container/About';
 
 function LostItem() {
   let { uid } = useParams();
+  const navigate = useNavigate();
 
   const [lostItem, setLostItem] = useState({});
   const [mainImage, setMainImage] = useState();
@@ -23,7 +24,9 @@ function LostItem() {
         console.log(response, 'li');
       })
       .catch((error) => {
-        window.location = '/*';
+        navigate('/*', {
+          state: { error: true },
+        });
         console.log(error, 'er');
       });
   };

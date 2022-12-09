@@ -1,13 +1,18 @@
 /* eslint-disable jsx-a11y/alt-text */
+import React from 'react';
 import '../css/App.css';
 import Navbar from '../common/Navbar';
 import QRTag from '../../images/about-QRTag.svg';
 import DownloadLink from '../common/DownloadLink';
+import BasicModal from '../common/BasicModal';
+import { useLocation } from 'react-router-dom';
 
 function About() {
+  const location = useLocation();
   return (
     <>
       <Navbar />
+      {location?.state?.error && <BasicModal />}
       <div className='About_Container'>
         <h3>About Us</h3>
         <div className='About_ImageDiv'>

@@ -85,6 +85,11 @@ function Login() {
 
   return (
     <>
+      <div style={{ position: 'absolute', bottom: '2%', right: '2%' }}>
+        <Link to='/about' style={{ fontWeight: '600', textDecoration: 'none' }}>
+          About Us
+        </Link>
+      </div>
       <div className='LogInContainer'>
         <div className='LogIn_ImageDiv'>
           <img className='LogIn_Image' src={QR_BG} />
