@@ -1,5 +1,5 @@
 import './components/css/App.css';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 
 import Admin from './components/container/Admin';
 import Home from './components/container/Home';
@@ -71,7 +71,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='*' element={<About />} />
+        <Route path='*' element={<Navigate to={'/about'} />} />
         <Route path='uuid/:uid' element={<Scanned />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/signup' element={<SignUp />} />
@@ -94,9 +94,9 @@ function App() {
             <Route path='store' element={<Store />} />
 
             <Route path='/' element={<About />} />
-            <Route path='/about' element={<About />} />
           </>
         )}
+        <Route path='/about' element={<About />} />
       </Routes>
       <ToastContainer position='bottom-right' />
     </BrowserRouter>
