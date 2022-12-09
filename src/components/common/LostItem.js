@@ -24,7 +24,7 @@ function LostItem() {
         console.log(response, 'li');
       })
       .catch((error) => {
-        navigate('/*', {
+        navigate('/about', {
           state: { error: true },
         });
         console.log(error, 'er');
