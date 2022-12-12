@@ -23,11 +23,11 @@ export default function BasicModal() {
   const navigate = useNavigate();
   //   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    navigate('/*', { state: null });
+    navigate('/about', { state: null });
     setOpen(false);
   };
   const closeModal = () => {
-    navigate('/*', { state: null });
+    navigate('/about', { state: null });
     setOpen(false);
   };
 

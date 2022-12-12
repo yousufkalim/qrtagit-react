@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import '../css/App.css';
 import QR_BG from '../../images/login-bg.svg';
-// import OtpInput from 'react-otp-input';
+import OtpInput from 'react-otp-input';
 import { Auth } from 'aws-amplify';
 import { useEffect, useState } from 'react';
 import { PulseLoader } from 'react-spinners';
@@ -78,14 +78,14 @@ function VerificationCode() {
                 width: '100%',
               }}
             >
-              {/* <OtpInput
+              <OtpInput
                 className='OtpInputBox'
                 numInputs={6}
                 value={formState.code}
                 onChange={(e) => {
                   setFormState((s) => ({ ...s, code: e }));
                 }}
-              /> */}
+              />
               {/* <input
                 className='LogIn_InputEmail'
                 required
