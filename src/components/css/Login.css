@@ -140,16 +140,18 @@
   width: 25%;
 }
 .OtpInputBox {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 5%;
+  display: flex !important;
+  justify-content: center !important;
+  margin-bottom: 5% !important;
 }
 .OtpInputBox input {
   width: 60% !important;
   height: 3rem;
+  margin: 0 1%;
   border: 1px solid #0a3f74 !important;
   border-radius: 5px !important;
   color: #000000 !important;
+  text-align: center;
 }
 ::placeholder {
   color: #818181;

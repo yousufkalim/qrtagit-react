@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import { PulseLoader } from 'react-spinners';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import ReactCodeInput from 'react-code-input';
+// import { reactCodeInput } from 'CodeInputField.scss';
 
 function VerificationCode() {
   const { state } = useLocation();
@@ -78,14 +80,22 @@ function VerificationCode() {
                 width: '100%',
               }}
             >
-              <OtpInput
+              <ReactCodeInput
+                className='OtpInputBox'
+                fields={6}
+                value={formState.code}
+                onChange={(e) => {
+                  setFormState((s) => ({ ...s, code: e }));
+                }}
+              />
+              {/* <OtpInput
                 className='OtpInputBox'
                 numInputs={6}
                 value={formState.code}
                 onChange={(e) => {
                   setFormState((s) => ({ ...s, code: e }));
                 }}
-              />
+              /> */}
               {/* <input
                 className='LogIn_InputEmail'
                 required
