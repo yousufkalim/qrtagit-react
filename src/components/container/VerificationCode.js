@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import '../css/App.css';
 import QR_BG from '../../images/login-bg.svg';
-import OtpInput from 'react-otp-input';
 import { Auth } from 'aws-amplify';
 import { useEffect, useState } from 'react';
 import { PulseLoader } from 'react-spinners';
