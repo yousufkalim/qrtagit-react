@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import '../css/App.css';
 import QR_BG from '../../images/login-bg.svg';
-// import OtpInput from 'react-otp-input';
 import { Auth } from 'aws-amplify';
 import { useEffect, useState } from 'react';
 import { PulseLoader } from 'react-spinners';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import ReactCodeInput from 'react-code-input';
+// import { reactCodeInput } from 'CodeInputField.scss';
 
 function VerificationCode() {
   const { state } = useLocation();
@@ -78,6 +79,14 @@ function VerificationCode() {
                 width: '100%',
               }}
             >
+              <ReactCodeInput
+                className='OtpInputBox'
+                fields={6}
+                value={formState.code}
+                onChange={(e) => {
+                  setFormState((s) => ({ ...s, code: e }));
+                }}
+              />
               {/* <OtpInput
                 className='OtpInputBox'
                 numInputs={6}
