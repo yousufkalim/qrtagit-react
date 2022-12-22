@@ -13,11 +13,12 @@ import { useState } from 'react';
 import { PulseLoader } from 'react-spinners';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 
 function SignUp() {
   const nav = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
   let [loading, setLoading] = useState(false);
   const [formState, setFormState] = useState({
     name: '',
@@ -110,7 +111,7 @@ function SignUp() {
                 type='email'
                 placeholder='Email '
               />
-              <input
+              {/* <input
                 className='LogIn_InputEmail'
                 // required
                 value={formState.phone}
@@ -119,6 +120,16 @@ function SignUp() {
                 }}
                 type='tel'
                 placeholder='Phone Number'
+              /> */}
+              <PhoneInput
+                international
+                className='LogIn_InputEmail'
+                placeholder='Phone Number'
+                defaultCountry='US'
+                value={formState.phone}
+                onChange={(phone) => {
+                  setFormState((s) => ({ ...s, phone }));
+                }}
               />
               <div className='LogIn_InputPasswordDiv'>
                 <input

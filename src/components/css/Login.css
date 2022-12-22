@@ -156,6 +156,10 @@
 ::placeholder {
   color: #818181;
 }
+.PhoneInputInput {
+  border: none !important;
+  outline: none !important;
+}
 @media only screen and (max-width: 1366px) {
   .LogIn_FormDiv {
     width: 50%;
