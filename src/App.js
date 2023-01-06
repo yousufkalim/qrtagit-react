@@ -4,7 +4,7 @@ import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import Admin from './components/container/Admin';
 import Home from './components/container/Home';
 import Scanned from './components/container/Scanned';
-import NotFound from './components/NotFound';
+// import NotFound from './components/NotFound';
 import About from './components/container/About';
 import Login from './components/container/Login';
 import SignUp from './components/container/SignUp';
@@ -12,24 +12,69 @@ import ForgetPassword from './components/container/ForgetPassword';
 import ConfirmPassword from './components/container/ConfirmPassword';
 import VerificationCode from './components/container/VerificationCode';
 import Store from './components/Store';
-
 import Chat from './components/container/Chat';
-import { useEffect, useState } from 'react';
+import { React, useEffect } from 'react';
 import { Hub, Auth } from 'aws-amplify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import PubNub from 'pubnub';
+import { PubNubProvider } from 'pubnub-react';
+import Axios from './config/axios';
+import { UpdateStore, Store as ContextStore, ResetStore } from './StoreContext';
+import { RecieveChannelList } from './services/chat';
+import { toast } from 'react-toastify';
+const pubnub = new PubNub({
+  publishKey: 'pub-c-e402503d-be87-49c1-8de2-c163e902d202',
+  subscribeKey: 'sub-c-e45da188-49e0-48e6-9aec-f29c548ec6ed',
+  uuid: 'sec-c-N2RhMzE3YTctNTJkMy00Zjk2LWE2NzItYjVjYzhmZGZhZWE4',
+});
 function App() {
-  const [isLogin, setIsLogin] = useState(localStorage.getItem('isLoggedIn') === 'true');
+  const { loggedIn, user, channels } = ContextStore();
+
+  const Reset = ResetStore();
+  const updateStore = UpdateStore();
+
+  useEffect(() => {
+    if (loggedIn) {
+      pubnub.setUUID(user.id + 'User');
+      RecieveChannelList(updateStore);
+      let listener = {
+        message: (event) => {
+          let name = event?.message?.user?.name;
+          let id = event?.message?.user?.id;
+          if (window.location.pathname === '/chat' || user?.id === id) {
+            return;
+          } else {
+            console.log('Message recieved', event);
+            toast.success('You have got a new message from ' + name);
+          }
+        },
+      };
+      pubnub.addListener(listener);
+      // pubnub.subscribe({ channels: channelList.map((c) => c.id) });
+
+      pubnub.subscribe({ channels: channels.map((c) => c.id) });
+      return () => {
+        pubnub.removeListener(listener);
+        pubnub.unsubscribe({ channels: channels.map((c) => c.id) });
+      };
+    }
+  }, [loggedIn, channels.length]);
 
   useEffect(() => {
     Hub.listen('auth', ({ payload }) => {
       const { event, data } = payload;
-      console.log('event', event);
       // eslint-disable-next-line default-case
       switch (event) {
         case 'signIn':
-          setIsLogin(true);
+          Axios.get('/users/detail/')
+            // .then((res) => res.data.json())
+            .then((resp) => {
+              localStorage.setItem('user', JSON.stringify(resp?.data));
+              updateStore({ user: resp.data, loggedIn: true });
+            })
+            .catch(() => {});
+          // setIsLogin(true);
           Auth.currentAuthenticatedUser().then((res) => {
             console.log({ res });
             localStorage.setItem('userData', JSON.stringify(res.attributes));
@@ -54,7 +99,7 @@ function App() {
         case 'signOut':
           console.log('user signed out');
           localStorage.setItem('isLoggedIn', 'false');
-          setIsLogin(false);
+          Reset();
           break;
 
         case 'cognitoHostedUI':
@@ -69,37 +114,39 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='*' element={<Navigate to={'/about'} />} />
-        <Route path='uuid/:uid' element={<Scanned />} />
-        <Route path='/chat' element={<Chat />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/forgetpassword' element={<ForgetPassword />} />
-        <Route path='/confirmpassword' element={<ConfirmPassword />} />
-        <Route path='/verificationcode' element={<VerificationCode />} />
-        {/* localStorage.getItem('i18nextLng') === 'fr' */}
-        {/* {localStorage.getItem('amplify-redirected-from-hosted-ui') === 'true' ? (
+    <PubNubProvider client={pubnub}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='*' element={<Navigate to={'/about'} />} />
+          <Route path='uuid/:uid' element={<Scanned />} />
+          <Route path='/chat' element={<Chat />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/forgetpassword' element={<ForgetPassword />} />
+          <Route path='/confirmpassword' element={<ConfirmPassword />} />
+          <Route path='/verificationcode' element={<VerificationCode />} />
+          {/* localStorage.getItem('i18nextLng') === 'fr' */}
+          {/* {localStorage.getItem('amplify-redirected-from-hosted-ui') === 'true' ? (
           <Route path='/' element={<About />} />
         ) : (
           <Route path='/' element={<Login />} />
         )} */}
-        {!isLogin ? (
-          <Route path='/' element={<Login />} />
-        ) : (
-          <>
-            <Route path='admin' element={<Admin />} />
-            <Route path='/viewitems' element={<Home />} />
-            {/* <Route path='/' element={<Home />} /> */}
-            <Route path='store' element={<Store />} />
+          {!loggedIn ? (
+            <Route path='/' element={<Login />} />
+          ) : (
+            <>
+              <Route path='admin' element={<Admin />} />
+              <Route path='/viewitems' element={<Home />} />
+              {/* <Route path='/' element={<Home />} /> */}
+              <Route path='store' element={<Store />} />
 
-            <Route path='/' element={<About />} />
-          </>
-        )}
-        <Route path='/about' element={<About />} />
-      </Routes>
-      <ToastContainer position='bottom-right' />
-    </BrowserRouter>
+              <Route path='/' element={<About />} />
+            </>
+          )}
+          <Route path='/about' element={<About />} />
+        </Routes>
+        <ToastContainer position='bottom-right' />
+      </BrowserRouter>
+    </PubNubProvider>
   );
 }
 

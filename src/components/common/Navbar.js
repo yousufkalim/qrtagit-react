@@ -14,15 +14,11 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
 import { Auth } from 'aws-amplify';
 import { PulseLoader } from 'react-spinners';
+import { Store, ResetStore } from '../../StoreContext';
 
 function Navbar() {
-  const isLogin = localStorage.getItem('isLoggedIn') === 'true';
+  const { user, loggedIn } = Store();
   const nav = useNavigate();
-  let userData = {};
-  try {
-    userData = JSON.parse(localStorage.getItem('userData'));
-  } catch (err) {}
-
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
@@ -38,10 +34,6 @@ function Navbar() {
         </div>
         <div className='Navbar_MenuContainer'>
           <div className='Navbar_MenuDiv'>
-            {/* <Link to='/' className='Navbar_MenuLinks'>
-              <img style={{ marginRight: '8%' }} src={HomeLogo} />
-              <p>Home</p>
-            </Link> */}
             <Link to='/about' className='Navbar_MenuLinks'>
               <img src={AboutIcon} />
               <p>About Us</p>
@@ -51,7 +43,6 @@ function Navbar() {
               <p>Messages</p>
             </Link>
             <Link to='/store' className='Navbar_MenuLinks'>
-              {/* <img src={MessageIcon} /> */}
               <ShoppingCartOutlinedIcon sx={{ color: '#fff' }} />
               <p>Store</p>
             </Link>
@@ -60,7 +51,7 @@ function Navbar() {
               <p>Download Our App</p>
             </Link>
           </div>
-          {!isLogin ? (
+          {!loggedIn ? (
             <div className='LogIn_BtnDiv' onClick={() => (window.location = '/')}>
               <button className='LogIn_Btn'>
                 <div> Sign In</div>
@@ -94,7 +85,7 @@ function Navbar() {
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    {userData?.name || 'User'}
+                    {user?.name || 'User'}
                   </p>
                   {open ? (
                     <ExpandLess sx={{ color: '#ffffff' }} />
@@ -111,25 +102,17 @@ function Navbar() {
         <List disablePadding>
           <ListItemButton>
             <ListItemText>
-              <div className='Navbar_CollapseText'>{userData?.name || 'Username'}</div>
+              <div className='Navbar_CollapseText'>{user?.name || 'Username'}</div>
             </ListItemText>
           </ListItemButton>
           <div className='Navbar_CollapseDivider' />
           <ListItemButton>
             <ListItemText>
-              <div className='Navbar_CollapseText'>{userData?.email || 'user@qrtagit.com'}</div>
+              <div className='Navbar_CollapseText'>{user?.email || 'user@qrtagit.com'}</div>
             </ListItemText>
           </ListItemButton>
           <div className='Navbar_CollapseDivider' />
           <div className='Navbar_CollapseDiv_Mob'>
-            {/* <ListItemButton>
-              <ListItemText sx={{ margin: '0' }}>
-                <Link to='/' className='Navbar_CollapseText'>
-                  <p>Home</p>
-                </Link>
-              </ListItemText>
-            </ListItemButton>
-            <div className='Navbar_CollapseDivider' /> */}
             <ListItemButton>
               <ListItemText sx={{ margin: '0' }}>
                 <Link to='/about' className='Navbar_CollapseText'>
@@ -172,7 +155,7 @@ function Navbar() {
               Auth.signOut().finally(() => {
                 nav('/');
               });
-              localStorage.setItem('isLoggedIn', 'false');
+              ResetStore();
             }}
           >
             <ListItemText>
