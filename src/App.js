@@ -23,6 +23,9 @@ import Axios from './config/axios';
 import { UpdateStore, Store as ContextStore, ResetStore } from './StoreContext';
 import { RecieveChannelList } from './services/chat';
 import { toast } from 'react-toastify';
+import { messaging } from './config/firebase';
+import { getToken } from 'firebase/messaging';
+
 const pubnub = new PubNub({
   publishKey: 'pub-c-e402503d-be87-49c1-8de2-c163e902d202',
   subscribeKey: 'sub-c-e45da188-49e0-48e6-9aec-f29c548ec6ed',
@@ -33,6 +36,14 @@ function App() {
 
   const Reset = ResetStore();
   const updateStore = UpdateStore();
+
+  useEffect(() => {
+    getToken(messaging)
+      .then((firebaseToken) => {
+        console.log({ firebaseToken });
+      })
+      .catch((firebaseError) => console.log({ firebaseError }));
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
