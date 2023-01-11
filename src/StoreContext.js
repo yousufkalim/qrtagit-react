@@ -7,7 +7,7 @@ import React, {
   useRef,
   useImperativeHandle,
   createRef,
-} from 'react';
+} from "react";
 
 // Initializing Create Context Hook
 const storeContext = createContext();
@@ -19,6 +19,7 @@ const InitialState = {
   user: {},
   channels: [],
   messages: [],
+  firebaseToken: null,
 };
 export function Store() {
   return useContext(storeContext);
@@ -45,8 +46,8 @@ export function StoreProvider({ children }) {
   if (isFirstTime.current) {
     var init = InitialState;
     try {
-      init = localStorage.getItem('store')
-        ? JSON.parse(localStorage.getItem('store'))
+      init = localStorage.getItem("store")
+        ? JSON.parse(localStorage.getItem("store"))
         : InitialState;
     } catch (e) {}
   }
@@ -58,7 +59,7 @@ export function StoreProvider({ children }) {
       return;
     }
     StoreRef.current = store;
-    localStorage.setItem('store', JSON.stringify(store));
+    localStorage.setItem("store", JSON.stringify(store));
   });
 
   const updateStore = (data) => {
@@ -74,7 +75,9 @@ export function StoreProvider({ children }) {
   // Render
   return (
     <storeContext.Provider value={store}>
-      <storeUpdateContext.Provider value={updateStore}>{children}</storeUpdateContext.Provider>
+      <storeUpdateContext.Provider value={updateStore}>
+        {children}
+      </storeUpdateContext.Provider>
     </storeContext.Provider>
   );
 }
