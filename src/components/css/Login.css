@@ -84,7 +84,8 @@
   text-align: center;
   margin: 3% 1%;
 }
-.LogIn_Btn {
+.LogIn_Btn,
+.LogIn_BtnWeb {
   color: #ffffff;
   font-weight: 600;
   background: transparent;
@@ -174,6 +175,11 @@
   }
   .LogIn_FormDiv {
     width: 80%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .LogIn_BtnWeb {
+    display: none;
   }
 }
 @media only screen and (max-width: 600px) {

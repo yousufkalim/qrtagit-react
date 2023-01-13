@@ -12,7 +12,6 @@ function LostItem() {
 
   const [lostItem, setLostItem] = useState({});
   const [mainImage, setMainImage] = useState();
-
   const getLostItems = () => {
     Axios.get(`/looser/find-item/${uid}/`)
       .then((response) => {
@@ -21,13 +20,11 @@ function LostItem() {
         }
         setLostItem(response?.data);
         setMainImage(response?.data?.photos[0]?.photo);
-        console.log(response, 'li');
       })
       .catch((error) => {
         navigate('/about', {
           state: { error: true },
         });
-        console.log(error, 'er');
       });
   };
 
@@ -105,7 +102,7 @@ function LostItem() {
                 <BasicModal btnText='Mark as found' btnColor='#ffffff' location />
               </div>
               <div className='LostItem_ChatBtn'>
-                <BasicModal btnText='Chat with owner' />
+                <BasicModal data={lostItem} btnText='Chat with owner' />
               </div>
             </div>
           </div>
