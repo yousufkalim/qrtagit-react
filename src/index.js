@@ -6,8 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Authenticator } from '@aws-amplify/ui-react';
 
 import { Amplify } from 'aws-amplify';
-// import awsExports from "./aws-exports";
-import awsExports from './config/awsConfig';
+import awsExports from './aws-exports';
 import { StoreProvider } from './StoreContext';
 
 // Configure Amplify!!!!
