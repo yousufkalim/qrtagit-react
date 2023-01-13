@@ -7320,6 +7320,11 @@ destroy@1.2.0:
   resolved "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz"
   integrity sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==
 
+detect-incognito@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/detect-incognito/-/detect-incognito-1.0.0.tgz#24f8f1957ddc246ef7f602653a2d015c55a84657"
+  integrity sha512-o/58BwX8VdQJFICJlgwLchBw/0js1tWDYe/ygOZhyuMw5pviIkOseH+IYPeR8iceU36KPJyDDm93iRhnH9mIEg==
+
 detect-newline@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/detect-newline/-/detect-newline-3.1.0.tgz"

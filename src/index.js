@@ -1,48 +1,48 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { Authenticator } from "@aws-amplify/ui-react";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { Authenticator } from '@aws-amplify/ui-react';
 
-import { Amplify } from "aws-amplify";
-import awsExports from "./config/awsConfig";
-import { StoreProvider } from "./StoreContext";
+import { Amplify } from 'aws-amplify';
+// import awsExports from "./aws-exports";
+import awsExports from './config/awsConfig';
+import { StoreProvider } from './StoreContext';
+
 // Configure Amplify!!!!
 // Check if you are in localhost or production in order to configure the
 // redirect URLs properly.
 const isLocalhost = Boolean(
-  window.location.hostname === "localhost" ||
+  window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
 
-    window.location.hostname === "[::1]" ||
+    window.location.hostname === '[::1]' ||
     // 127.0.0.0/8 are considered localhost for IPv4.
 
-    window.location.hostname.match(
-      /^127(?:.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
+    window.location.hostname.match(/^127(?:.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
 );
 
-const signInURI = awsExports.oauth.redirectSignIn.split(",");
-const signOutURI = awsExports.oauth.redirectSignOut.split(",");
+const signInURI = awsExports.oauth.redirectSignIn.split(',');
+const signOutURI = awsExports.oauth.redirectSignOut.split(',');
 
 if (isLocalhost) {
   awsExports.oauth.redirectSignIn = signInURI[0];
   awsExports.oauth.redirectSignOut = signOutURI[0];
-} else if (window.location.hostname === "main.d1i6i6g25r1vzu.amplifyapp.com") {
+} else if (window.location.hostname === 'main.d1i6i6g25r1vzu.amplifyapp.com') {
   awsExports.oauth.redirectSignIn = signInURI[1];
   awsExports.oauth.redirectSignOut = signOutURI[1];
-} else if (window.location.hostname === "dev.qrtag.it") {
+} else if (window.location.hostname === 'dev.qrtag.it') {
   awsExports.oauth.redirectSignIn = signInURI[2];
   awsExports.oauth.redirectSignOut = signOutURI[2];
 } else {
-  console.log("AMPLIFY NOT CONFIGURED PROPERLY");
+  console.log('AMPLIFY NOT CONFIGURED PROPERLY');
 }
 // Check if you are in localhost or production
 // Now we can Configure Resources
 Amplify.configure(awsExports);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <StoreProvider>
     <React.StrictMode>

@@ -6,7 +6,9 @@ import LogoText from '../../images/logotext.svg';
 import AboutIcon from '../../images/navbar-about-icon.svg';
 import MessageIcon from '../../images/navbar-message-icon.svg';
 import DownloadIcon from '../../images/navbar-download-icon.svg';
-import AvatarLogo from '../../images/navbar-avatar.png';
+import Avatar from '../../images/avatar.png';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Link, useNavigate } from 'react-router-dom';
@@ -21,7 +23,6 @@ function Navbar() {
   const nav = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-
   const handleClick = () => {
     setOpen(!open);
   };
@@ -52,11 +53,27 @@ function Navbar() {
             </Link>
           </div>
           {!loggedIn ? (
-            <div className='LogIn_BtnDiv' onClick={() => (window.location = '/')}>
-              <button className='LogIn_Btn'>
-                <div> Sign In</div>
-              </button>
-            </div>
+            <ListItemButton
+              sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <div className='LogIn_BtnDiv' onClick={handleClick}>
+                <button className='LogIn_BtnWeb' onClick={() => (window.location = '/')}>
+                  <div> Sign In</div>
+                </button>
+                <div className='expandIconsMob'>
+                  {open ? (
+                    <CloseIcon sx={{ color: '#ffffff' }} />
+                  ) : (
+                    <MenuIcon sx={{ color: '#ffffff' }} />
+                  )}
+                </div>
+              </div>
+            </ListItemButton>
           ) : (
             <div
               style={{
@@ -77,7 +94,14 @@ function Navbar() {
                     width: '100%',
                   }}
                 >
-                  <img src={AvatarLogo} />
+                  <img
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                    }}
+                    src={user?.looser?.profile_picture ? user?.looser?.profile_picture : Avatar}
+                  />
                   <p
                     style={{
                       color: '#ffffff',
@@ -100,18 +124,23 @@ function Navbar() {
       </div>
       <Collapse className='Navbar_CollapseDiv' in={open} timeout='auto' unmountOnExit>
         <List disablePadding>
-          <ListItemButton>
-            <ListItemText>
-              <div className='Navbar_CollapseText'>{user?.name || 'Username'}</div>
-            </ListItemText>
-          </ListItemButton>
-          <div className='Navbar_CollapseDivider' />
-          <ListItemButton>
-            <ListItemText>
-              <div className='Navbar_CollapseText'>{user?.email || 'user@qrtagit.com'}</div>
-            </ListItemText>
-          </ListItemButton>
-          <div className='Navbar_CollapseDivider' />
+          {loggedIn && (
+            <>
+              <ListItemButton>
+                <ListItemText>
+                  <div className='Navbar_CollapseText'>{user?.name || 'Username'}</div>
+                </ListItemText>
+              </ListItemButton>
+
+              <div className='Navbar_CollapseDivider' />
+              <ListItemButton>
+                <ListItemText>
+                  <div className='Navbar_CollapseText'>{user?.email || 'user@qrtagit.com'}</div>
+                </ListItemText>
+              </ListItemButton>
+              <div className='Navbar_CollapseDivider' />
+            </>
+          )}
           <div className='Navbar_CollapseDiv_Mob'>
             <ListItemButton>
               <ListItemText sx={{ margin: '0' }}>
@@ -145,26 +174,38 @@ function Navbar() {
               </ListItemText>
             </ListItemButton>
             <div className='Navbar_CollapseDivider' />
+            {!loggedIn && (
+              <ListItemButton onClick={() => (window.location = '/')}>
+                <ListItemText>
+                  <div className='Navbar_SignOutDiv'>
+                    <div className='Navbar_CollapseText'> SignIn</div>
+                    <div>{loading && <PulseLoader size={10} color='#0A3F74' />}</div>
+                  </div>
+                </ListItemText>
+              </ListItemButton>
+            )}
           </div>
-          <ListItemButton
-            onClick={() => {
-              if (loading) {
-                return;
-              }
-              setLoading((s) => !s);
-              Auth.signOut().finally(() => {
-                nav('/');
-              });
-              ResetStore();
-            }}
-          >
-            <ListItemText>
-              <div className='Navbar_SignOutDiv'>
-                <div className='Navbar_CollapseText'> SignOut</div>
-                <div>{loading && <PulseLoader size={10} color='#0A3F74' />}</div>
-              </div>
-            </ListItemText>
-          </ListItemButton>
+          {loggedIn && (
+            <ListItemButton
+              onClick={() => {
+                if (loading) {
+                  return;
+                }
+                setLoading((s) => !s);
+                Auth.signOut().finally(() => {
+                  nav('/');
+                });
+                ResetStore();
+              }}
+            >
+              <ListItemText>
+                <div className='Navbar_SignOutDiv'>
+                  <div className='Navbar_CollapseText'> SignOut</div>
+                  <div>{loading && <PulseLoader size={10} color='#0A3F74' />}</div>
+                </div>
+              </ListItemText>
+            </ListItemButton>
+          )}
         </List>
       </Collapse>
     </>

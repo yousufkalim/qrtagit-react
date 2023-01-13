@@ -60,6 +60,9 @@
   justify-content: space-between;
   align-items: center;
 }
+.expandIconsMob {
+  display: none;
+}
 .Navbar_CollapseText {
   display: flex !important;
   align-items: center !important;
@@ -116,6 +119,9 @@
     display: none;
   }
   .Navbar_CollapseDiv_Mob {
+    display: block;
+  }
+  .expandIconsMob {
     display: block;
   }
   .Navbar_MenuContainer {
