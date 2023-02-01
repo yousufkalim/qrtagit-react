@@ -200,6 +200,22 @@
   display: flex;
   border-radius: 10px;
 }
+.Attach_file {
+  background-image: url(../../images/attach-icon.svg);
+  background-repeat: no-repeat;
+  /* background-color: #0a3f74; */
+  width: fit-content;
+  /* display: none; */
+}
+input::file-selector-button {
+  /* background-color: #0c80a0; */
+  display: none;
+}
+input[type="file"] {
+  /* color: transparent; */
+  /* background-color: #303030; */
+  width: 30% !important;
+}
 .Chat_TypingSubDiv input {
   width: 100%;
   border: none;
