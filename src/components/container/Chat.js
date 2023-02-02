@@ -26,6 +26,9 @@ function Chat() {
   const [open, setOpen] = useState(false);
   const [messageList, setMessageList] = useState([]);
   const sender = activeChannel?.users?.find((item) => user?.id !== item?.id);
+  // attachment file and searching implementation
+  const [searchQuery, setSearchQuery] = useState("");
+
   const handleMessage = (event) => {
     console.log(event);
     setMessageList((m) =>
@@ -89,8 +92,19 @@ function Chat() {
     RecieveChannelList(user.id);
   }, []);
 
-  console.log(messageList);
+  // attachment file and searching implementation
 
+  const handleChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const FilterData = channelList.filter((c) => {
+    const receivedUser =
+      user?.email === c?.users[0]?.email ? c?.users[1] : c?.users[0];
+    return (receivedUser.name || receivedUser.email)
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+  });
   return (
     <div style={{ overflow: "hidden" }}>
       <Navbar />
@@ -98,7 +112,7 @@ function Chat() {
         <div className="Chat_LeftContainer">
           <h3>Messages</h3>
           <div className="Chat_LeftContainer_SearchDiv">
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="Search" onChange={handleChange} />
             <img src={Search} />
           </div>
           <div className="Chat_MessagesList">
@@ -108,7 +122,7 @@ function Chat() {
                 width: "100%",
               }}
             >
-              {channelList?.map((item) => {
+              {FilterData?.map((item) => {
                 const receivedUser =
                   user?.email === item?.users[0]?.email
                     ? item?.users[1]
@@ -294,7 +308,7 @@ function Chat() {
           <div className="Chat_LeftContainer">
             <h3>Messages</h3>
             <div className="Chat_LeftContainer_SearchDiv">
-              <input type="text" placeholder="Search" />
+              <input type="text" placeholder="Search" onChange={handleChange} />
               <img src={Search} />
             </div>
             <div className="Chat_MessagesList" onClick={handleOpen}>
@@ -303,7 +317,7 @@ function Chat() {
                   background: "#0A3F741A",
                 }}
               >
-                {channelList?.map((item) => {
+                {FilterData?.map((item) => {
                   const receivedUser =
                     user?.email === item?.users[0]?.email
                       ? item?.users[1]

@@ -63,6 +63,9 @@
 .expandIconsMob {
   display: none;
 }
+.login_name {
+  padding: 2% 2% 2% 7%;
+}
 .Navbar_CollapseText {
   display: flex !important;
   align-items: center !important;
