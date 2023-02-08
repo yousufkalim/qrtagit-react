@@ -17,11 +17,13 @@ import { Collapse, List, ListItemButton, ListItemText } from "@mui/material";
 import { Auth } from "aws-amplify";
 import { PulseLoader } from "react-spinners";
 import { Store, ResetStore } from "../../StoreContext";
-
+import ConfirmationModel from "../common/ConfirmationModel";
 function Navbar() {
   const { user, loggedIn } = Store();
   const nav = useNavigate();
   const [open, setOpen] = React.useState(false);
+  const [cancel, setCancel] = React.useState(false);
+
   const [loading, setLoading] = React.useState(false);
   const handleClick = () => {
     setOpen(!open);
@@ -210,14 +212,15 @@ function Navbar() {
           {loggedIn && (
             <ListItemButton
               onClick={() => {
-                if (loading) {
-                  return;
-                }
-                setLoading((s) => !s);
-                Auth.signOut().finally(() => {
-                  nav("/");
-                });
-                ResetStore();
+                setCancel(true);
+                // if (loading) {
+                //   return;
+                // }
+                // setLoading((s) => !s);
+                // Auth.signOut().finally(() => {
+                //   nav("/");
+                // });
+                // ResetStore();
               }}
             >
               <ListItemText>
@@ -232,6 +235,20 @@ function Navbar() {
           )}
         </List>
       </Collapse>
+      <ConfirmationModel
+        open={cancel}
+        setOpen={setCancel}
+        onConfirm={() => {
+          if (loading) {
+            return;
+          }
+          setLoading((s) => !s);
+          Auth.signOut().finally(() => {
+            nav("/");
+          });
+          ResetStore();
+        }}
+      ></ConfirmationModel>
     </>
   );
 }

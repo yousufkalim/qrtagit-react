@@ -179,6 +179,21 @@
   border-radius: 25px;
   color: #ffffff;
 }
+.Chat_SenderChatSubDiv_map {
+  padding: 1% 0 3% 1%;
+  background: #0a3f74;
+  width: fit-content;
+  border-radius: 15px;
+  margin-right: 1.5%;
+  color: #ffffff;
+  border-bottom-right-radius: 0%;
+}
+.Chat_SenderChatSubDiv_map img {
+  border-radius: 15px;
+  padding: 0.7%;
+  width: 95%;
+  float: left;
+}
 .Chat_SenderChatSubDiv_Time {
   color: #818181;
 }
@@ -199,6 +214,10 @@
   border: 1px solid rgb(221, 221, 221);
   display: flex;
   border-radius: 10px;
+}
+.Chat_TypingSubDiv button {
+  border: none;
+  background: none;
 }
 .Attach_file {
   background-image: url(../../images/attach-icon.svg);
