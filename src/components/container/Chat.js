@@ -10,6 +10,8 @@ import { useEffect, useRef, useState } from "react";
 import { usePubNub } from "pubnub-react";
 import Axios from "../../config/axios";
 import { Store, UpdateStore } from "../../StoreContext";
+import StaticMap from "../common/StaticMap.js";
+
 import {
   RecieveChannelList,
   HandleMessageHistory,
@@ -28,21 +30,38 @@ function Chat() {
   const sender = activeChannel?.users?.find((item) => user?.id !== item?.id);
   // attachment file and searching implementation
   const [searchQuery, setSearchQuery] = useState("");
-
   const handleMessage = (event) => {
     console.log(event);
+    // {
+    //   ...receivedMsg,
+    //   type: receivedMsg.message?.type || "text",
+    //   message:
+    //     receivedMsg.message?.type === "location"
+    //       ? { location: receivedMsg.message.location }
+    //       : receivedMsg.message.text
+    // }
     setMessageList((m) =>
       [
         {
           text: event.message.text,
-          send_by: event.publisher.split("User")[0],
-          send_by_temp: event.publisher.split("User")[0],
+          extra_message: {
+            type: event.message?.type || "text",
+            location: event.message?.location,
+          },
+
+          send_by: +event.publisher.split("User")[0],
+          send_by_temp: +event.publisher.split("User")[0],
           channel: event.channel,
         },
       ].concat(m)
     );
   };
   const sendMessage = (message) => {
+    console.log("message sent", { user, sender });
+    const trimmedMessage = message?.trim();
+    if (!trimmedMessage) {
+      return;
+    }
     if (message) {
       pubnub
         .publish({
@@ -105,6 +124,61 @@ function Chat() {
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
   });
+
+  var x = document.getElementById("demo");
+
+  const sendLocation = () => {
+    console.log("click btn");
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const { latitude, longitude } = pos.coords;
+        console.log({
+          message: {
+            user,
+            type: "location",
+            location: { latitude, longitude },
+          },
+        });
+        pubnub
+          .publish({
+            channel: [activeChannel.id],
+            message: {
+              user,
+              type: "location",
+              location: { latitude, longitude },
+            },
+          })
+          .then((res) => {
+            // recieveChannelList();
+          })
+          .catch((err) => console.log("send messaeg Error ===> ", err));
+
+        const sendto = activeChannel?.users?.find(
+          (item) => user?.id !== item?.id
+        );
+        const obj = JSON.stringify({
+          send_by: user.id,
+          send_to: sendto?.id,
+          channel: activeChannel.id,
+          extra_message: {
+            type: "location",
+            location: { latitude, longitude },
+          },
+        });
+        Axios.post(`/message/add-message`, obj)
+          .then((res) => {
+            // handleMessageHistory(activeChannel);
+            console.log("addmessages api res =>", res);
+          })
+          .catch((error) => {
+            console.log("addmessages api error", error);
+          });
+      });
+    } else {
+      console.log("error");
+    }
+  };
+  console.log({ messageList });
   return (
     <div style={{ overflow: "hidden" }}>
       <Navbar />
@@ -217,6 +291,7 @@ function Chat() {
               const isSender = loggedIn
                 ? item.send_by === user.id
                 : item.send_by_temp === user.id;
+
               return (
                 <>
                   {messageList.length > 1 ? (
@@ -224,19 +299,33 @@ function Chat() {
                       {isSender ? (
                         <div className="Chat_SenderChatDiv">
                           <div className="Chat_SenderChatSubDiv">
-                            <div
-                              key={`message-${index}`}
-                              className="Chat_SenderChatSubDiv_P"
-                            >
-                              {item.text}
-                            </div>
+                            {
+                              <div
+                                key={`message-${index}`}
+                                className={
+                                  item.extra_message?.type === "location"
+                                    ? "Chat_SenderChatSubDiv_map"
+                                    : "Chat_SenderChatSubDiv_P"
+                                }
+                              >
+                                {item.extra_message?.type === "location" ? (
+                                  <StaticMap {...item.extra_message.location} />
+                                ) : (
+                                  item.text
+                                )}
+                              </div>
+                            }
                           </div>
                         </div>
                       ) : (
                         <div className="Chat_RevievedChatDiv">
                           <div className="Chat_RevievedChatSubDiv" />
                           <div className="Chat_RevievedChatSubDiv_P">
-                            {item?.text}
+                            {JSON.stringify(
+                              item.extra_message?.type === "location"
+                                ? item.extra_message
+                                : item.text
+                            )}
                           </div>
                         </div>
                       )}
@@ -256,7 +345,10 @@ function Chat() {
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <div className="Chat_TypingSubDiv">
-                  <img src={AttachIcon} />
+                  <button onClick={sendLocation}>
+                    <img src={AttachIcon} />
+                  </button>
+
                   <input
                     type="text"
                     placeholder="Type your message here..."
